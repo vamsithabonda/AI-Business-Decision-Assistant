@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>AI Business Dashboard</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body id="body"
+style="margin:0;font-family:Arial;background:#f4f6f9;transition:0.3s;">
+<div style="display:flex;">
+<div style="
+width:250px;
+height:100vh;
+background:#1f4e79;
+color:white;
+padding:30px 20px;
+position:fixed;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+overflow-y:auto;
+box-sizing:border-box;
+">
+
+<h2 style="
+font-size:24px;
+line-height:1.4;
+margin-bottom:20px;
+">
+AI Business<br>
+Decision Assistant
+</h2>
+<div id="clock"
+style="
+font-size:15px;
+margin-bottom:20px;
+color:#dbe9ff;
+font-weight:bold;
+">
+</div>
+
+<hr>
+<button onclick="toggleMode()"
+style="
+padding:10px 18px;
+border:none;
+border-radius:8px;
+background:white;
+color:#1f4e79;
+font-weight:bold;
+cursor:pointer;
+margin-bottom:20px;
+">
+🌙 Dark Mode
+</button>
+<div>
+<p><a href="/" class="sidebar-link active">
+🏠 Home
+</a></p>
+
+<p><a href="/sales" class="sidebar-link">
+💰 Sales
+</a></p>
+
+<p><a href="/region-sales" class="sidebar-link">
+🌍 Regions
+</a></p>
+
+<p><a href="/top-products"
+class="sidebar-link">
+📦 Products
+</a></p>
+
+<p><a href="/top-customers"
+class="sidebar-link">
+👥 Customers
+</a></p>
+
+<p><a href="/ai-insights"
+class="sidebar-link">
+🤖 AI Insights
+</a></p>
+
+<p><a href="/data"
+class="sidebar-link">
+📋 Data Table
+</a></p>
+
+<p><a href="/analytics" class="sidebar-link">
+📊 Analytics
+</a></p>
+</div>
+<div class="sidebar-link">
+    👤 {{ session['user'] }}
+</div>
+
+<a href="/logout"
+class="sidebar-link"
+style="
+background:red;
+color:white;
+text-align:center;
+">
+Logout
+</a>
+</div>
+<div style="
+margin-left:290px;
+padding:30px;
+width:calc(100% - 290px);
+box-sizing:border-box;
+overflow-x:hidden;
+">
+
+<div style="
+background:white;
+padding:25px 35px;
+border-radius:18px;
+box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+margin-bottom:30px;
+">
+
+<h1 style="
+margin:0;
+color:#1f4e79;
+font-size:38px;
+">
+📊 AI Business Dashboard
+</h1>
+
+<p style="
+color:#666;
+font-size:18px;
+margin-top:10px;
+line-height:1.6;
+">
+Welcome back! Monitor your business performance and analytics.
+</p>
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>💰 Total Sales</h2>
+<p style="
+color:green;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,.2f}".format(total_sales) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>👥 Total Customers</h2>
+<p style="
+color:#007bff;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,}".format(total_customers) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>📦 Total Products</h2>
+<p style="
+color:orange;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,}".format(total_products) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>🛒 Total Orders</h2>
+<p style="
+color:purple;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,}".format(total_orders) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>📈 Total Profit</h2>
+<p style="
+color:#28a745;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,.2f}".format(total_profit) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>📊 Total Quantity</h2>
+<p style="
+color:#ff6600;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,.2f}".format(total_quantity) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+<h2>💳 Avg Order Value</h2>
+<p style="
+color:#17a2b8;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,.2f}".format(avg_order_value) }}
+</span>
+</p>
+</div>
+
+<div class="card">
+
+<h2>🚀 Sales Growth</h2>
+
+{% if sales_growth > 10 %}
+
+<p style="
+color:green;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ "{:,.2f}".format(sales_growth) }}
+</span>%
+</p>
+
+{% else %}
+
+<p style="
+color:red;
+font-size:28px;
+font-weight:bold;
+">
+<span class="counter">
+{{ sales_growth }}
+</span>%
+</p>
+
+{% endif %}
+
+</div>
+
+</div>
+
+<h2 style="
+color:#1f4e79;
+margin-bottom:20px;
+">
+⚡ Quick Actions
+</h2>
+
+<div class="dashboard">
+
+<h2>⚡ Quick Actions</h2>
+
+<div style="
+display:flex;
+gap:15px;
+flex-wrap:wrap;
+">
+
+<a href="/analytics"
+style="
+background:#1f4e79;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+">
+📊 Analytics
+</a>
+
+<a href="/data"
+style="
+background:#28a745;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+">
+📋 Data Table
+</a>
+
+<a href="/download-report"
+style="
+background:#ff9800;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+text-decoration:none;
+font-weight:bold;
+">
+📄 PDF Report
+</a>
+
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+<h2>💰 Total Sales</h2>
+<p>View complete sales analysis</p>
+<a href="/sales">Open</a>
+</div>
+
+<div class="card">
+<h2>🌍 Region Sales</h2>
+<p>Analyze sales by region</p>
+<a href="/region-sales">Open</a>
+</div>
+
+<div class="card">
+<h2>📦 Top Products</h2>
+<p>See best selling products</p>
+<a href="/top-products">Open</a>
+</div>
+
+<div class="card">
+<h2>👥 Top Customers</h2>
+<p>View valuable customers</p>
+<a href="/top-customers">Open</a>
+</div>
+
+<div class="card">
+<h2>🤖 AI Insights</h2>
+<p>Generate AI business recommendations</p>
+<a href="/ai-insights">Open</a>
+</div>
+
+</div>
+
+<div class="dashboard">
+
+<h2>Ask AI Business Assistant</h2>
+
+<form action="/ask-ai" method="POST">
+
+<input type="text"
+name="question"
+placeholder="Ask business question..."
+style="
+width:70%;
+padding:12px;
+border-radius:8px;
+border:1px solid gray;
+font-size:16px;
+">
+
+<button type="submit"
+style="
+padding:12px 20px;
+background:#1f4e79;
+color:white;
+border:none;
+border-radius:8px;
+font-size:16px;
+cursor:pointer;
+">
+Ask AI
+</button>
+
+</form>
+
+</div>
+
+<div class="dashboard">
+
+<h2>Download Business Report</h2>
+
+<a href="/download-report"
+style="
+background:#1f4e79;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:8px;
+font-size:18px;
+">
+Download PDF Report
+</a>
+
+</div>
+
+<div class="dashboard">
+
+<h2>Download Excel Data</h2>
+
+<a href="/download-excel"
+style="
+background:green;
+color:white;
+padding:12px 20px;
+text-decoration:none;
+border-radius:8px;
+font-size:18px;
+">
+Download Excel File
+</a>
+
+</div>
+
+</div>
+<script>
+
+function toggleMode(){
+
+    let body = document.getElementById("body");
+
+    if(body.style.background == "rgb(34, 34, 34)"){
+
+        body.style.background = "#f4f6f9";
+
+        body.style.color = "black";
+
+    }
+    else{
+        body.style.background = "#222";
+
+        body.style.color = "white";
+    }
+
+}
+
+</script>
+
+<script>
+
+function updateClock(){
+
+    const now = new Date();
+
+    document.getElementById("clock").innerHTML =
+        now.toLocaleString();
+
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+</script>
+
+</body>
+
+</html>

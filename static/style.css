@@ -1,0 +1,146 @@
+body{
+    font-family:Arial;
+    background:#f4f6f9;
+    margin:0;
+    padding:0;
+    overflow-x:hidden;
+}
+
+/* CARDS CONTAINER */
+
+.container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
+    gap:25px;
+    margin-bottom:30px;
+}
+
+/* CARDS */
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0px 4px 12px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0px 8px 18px rgba(0,0,0,0.2);
+}
+
+.card h2{
+    color:#1f4e79;
+    margin-bottom:10px;
+    font-size:22px;
+}
+
+.card p{
+    font-size:18px;
+    color:#444;
+}
+
+.card a{
+    display:inline-block;
+    margin-top:20px;
+    padding:12px 20px;
+    background:#1f4e79;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    width:fit-content;
+    font-weight:bold;
+    transition:0.3s;
+}
+.card a:hover{
+    background:#163b5c;
+    transform:scale(1.05);
+}
+
+/* DASHBOARD SECTIONS */
+
+.dashboard{
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    margin-bottom:30px;
+    box-shadow:0px 4px 10px rgba(0,0,0,0.1);
+    overflow:hidden;
+}
+
+.dashboard h2{
+    color:#1f4e79;
+    margin-bottom:20px;
+}
+
+/* CHART IMAGES */
+
+.dashboard img{
+    width:100%;
+    max-width:100%;
+    border-radius:10px;
+}
+
+/* INPUT */
+
+input{
+    max-width:100%;
+    box-sizing:border-box;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .container{
+        grid-template-columns:1fr;
+    }
+
+}
+
+.analytics-card{
+    background:white;
+    padding:20px;
+    border-radius:18px;
+    box-shadow:0px 4px 15px rgba(0,0,0,0.1);
+    margin-bottom:25px;
+    transition:0.3s;
+}
+
+.analytics-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0px 8px 22px rgba(0,0,0,0.15);
+}
+
+.analytics-card h2{
+    color:#1f4e79;
+    margin-bottom:20px;
+    font-size:28px;
+}
+
+.analytics-card img{
+    width: 100%;
+    border-radius:12px;
+}
+
+.sidebar-link{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:12px 15px;
+    border-radius:10px;
+    transition:0.3s;
+    margin-bottom:8px;
+}
+
+.sidebar-link:hover{
+    background:rgba(255,255,255,0.15);
+    transform:translateX(5px);
+}
+
+.active{
+    background:white;
+    color:#1f4e79 !important;
+    font-weight:bold;
+}

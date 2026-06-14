@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+</style>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            background: linear-gradient(-45deg, #1f4e79, #4e73df, #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+
+            /* 🔥 IMPORTANT FIX */
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            width: 1000px;
+            max-width: 95%;
+            min-height: 520px;
+
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            border: 1px solid rgba(255,255,255,0.2);
+            animation:fadeIn 1s ease;
+        }
+
+        .left {
+            width: 50%;
+            background: rgba(31, 78, 121, 0.9);
+            backdrop-filter: blur(10px);
+            color: white;
+
+            padding: 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .right {
+            width: 50%;
+            padding: 50px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .icon {
+            font-size: 60px;
+            margin-bottom: 25px;
+        }
+
+        h1 {
+            font-size: 38px;
+            line-height: 1.3;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 2;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1f4e79;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #1f4e79;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        /* 🔥 RESPONSIVE FIX */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                min-height: auto;
+            }
+
+            .left, .right {
+                width: 100%;
+            }
+        }
+        @keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+        button:hover {
+    background: #163a5c;
+    transform: scale(1.03);
+    transition: 0.3s ease;
+}
+input:focus {
+    outline: none;
+    border: 2px solid #1f4e79;
+    box-shadow: 0 0 8px rgba(31,78,121,0.4);
+}
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+
+        <div class="icon">🤖</div>
+
+        <h1>
+            AI Business<br>
+            Decision Assistant
+        </h1>
+
+        <p>
+            📊 Analyze Sales Data<br>
+            🤖 Generate AI Insights<br>
+            📈 Visualize Business Performance<br>
+            🎯 Make Better Decisions
+        </p>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <h2>Login</h2>
+
+        <form action="/login" method="POST">
+
+            <input type="text" name="username" placeholder="Username">
+
+            <input type="password" name="password" placeholder="Password">
+
+            <button type="submit">Login</button>
+            <p style="text-align:center;margin-top:15px;">
+            Don't have an account?
+            <a href="/signup-page">Create Account</a>
+            </p>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
