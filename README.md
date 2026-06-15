@@ -155,6 +155,30 @@ Provides:
 
 ---
 
+## Project Screenshots
+
+### Login Page
+
+![Login](screenshots/login.png)
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.png)
+
+### Analytics
+
+![Analytics](screenshots/analytics.png)
+
+### Data Explorer
+
+![Data Explorer](screenshots/data-explorer.png)
+
+### AI Insights
+
+![AI Insights](screenshots/ai-insights.png)
+
+---
+
 ## Author
 
 Developed as an AI-Powered Business Analytics Project using Flask, MySQL, and Generative AI.
